@@ -36,6 +36,20 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+#models
+*.joblib
+*.pkl
+#*.h5
+#*.pth
+
+# visualizations
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.pdf
+
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
@@ -160,3 +174,58 @@ cython_debug/
 #  and can be added to the global gitignore or merged into this file.  For a more nuclear
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
+
+
+# Ignore Parquet files
+*.parquet
+
+# Ignore CSV files
+*.csv
+
+# Ignore Excel files
+*.xls
+*.xlsx
+*.xlsm
+*.xltx
+
+# Ignore Word documents
+*.doc
+*.docx
+*.dotx
+
+# Ignore PowerPoint files
+*.ppt
+*.pptx
+*.ppsx
+
+# Ignore PDF files
+*.pdf
+
+# Ignore plain text files
+*.txt
+
+# Ignore JSON files
+*.json
+
+# Ignore YAML files
+*.yaml
+*.yml
+
+# Ignore SQL files
+*.sql
+
+# Ignore any other common data file types
+*.data
+*.dat
+
+# Ignore backup files
+*.bak
+
+# Ignore other office-related file types
+*.odt  # OpenDocument Text
+*.ods  # OpenDocument Spreadsheet
+*.odp  # OpenDocument Presentation
+*.odg  # OpenDocument Graphics
+
+# Ignore temporary files created by some applications
+~$*
