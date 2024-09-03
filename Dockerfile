@@ -13,9 +13,12 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the API code, model, and scaler files into the container
-COPY api.py .
-COPY best_model.joblib .
-COPY robust_scaler.joblib .
+# COPY all py files including api.py and model_training files
+COPY *.py .  
+# COPY best_model.joblib and robust_scaler.joblib .
+COPY *.joblib .
+COPY *.pkl .
+COPY version_info.txt .
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8000

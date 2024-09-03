@@ -8,6 +8,11 @@ import joblib
 import pickle
 import pandas as pd
 import os
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 
 app = FastAPI()
 
@@ -127,3 +132,7 @@ async def predict_house_price(features: HousingFeatures):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
+    
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the Housing Price Prediction API"}
