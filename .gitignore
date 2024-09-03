@@ -135,14 +135,25 @@ celerybeat.pid
 # SageMath parsed files
 *.sage.py
 
+#catboost
+catboost_info/
+
 # Environments
+__pycache__
+*.pyc
+*.pyo
+*.pyd
 .env
 .venv
 env/
-venv/
+venv*/
 ENV/
 env.bak/
 venv.bak/
+
+#GIT
+.git
+
 
 # Spyder project settings
 .spyderproject
@@ -201,8 +212,8 @@ cython_debug/
 # Ignore PDF files
 *.pdf
 
-# Ignore plain text files
-*.txt
+# DON'T Ignore plain text files
+# *.txt
 
 # Ignore JSON files
 *.json

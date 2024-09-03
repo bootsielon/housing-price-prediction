@@ -1,11 +1,12 @@
 # utils.py
 
-def print_top_models(df, metrics, top_n=3):
+def print_top_models(df, metrics):  # , top_n=3):
     for metric in metrics:
         ascending = True if metric not in ['R2', 'Adjusted R2'] else False
-        top = df.sort_values(metric, ascending=ascending).head(top_n)
-        print(f"\nTop {top_n} models by {metric}:")
+        top = df.sort_values(metric, ascending=ascending)  #.head(df.shape[0])
+        print(f"\nRanked models by {metric}:")
         print(top[[metric]])
+
 
 def calculate_overall_rank(df):
     for col in df.columns:

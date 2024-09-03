@@ -1,7 +1,7 @@
 # Dockerfile
 
 # Use an official Python runtime as the base image
-FROM python:3.9-slim
+FROM python:3.12-slim
 
 # Set the working directory in the container
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the API code, model, and scaler files into the container
 COPY api.py .
-COPY random_forest_model.joblib .
+COPY best_model.joblib .
 COPY robust_scaler.joblib .
 
 # Make port 8000 available to the world outside this container
