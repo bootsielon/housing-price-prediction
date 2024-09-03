@@ -1,18 +1,32 @@
 # housing-price-prediction repo: Housing Price Prediction API
 
-This project implements a regression model to predict housing prices based on various features. It includes data processing, model training, and a REST API for serving predictions.
+This project implements a machine learning regression model to predict housing prices in California based on various features such as location, size, and proximity to the ocean. It aims to provide accurate price estimates for potential home buyers, sellers, and real estate professionals. The project encompasses data processing, exploratory data analysis, model training, and a REST API for serving predictions, making it a comprehensive tool for real estate market analysis.
 
 ## Table of Contents
-
+0. [Data Source and Preprocessing](#data-source-preprocessing)
 1. [Project Structure](#project-structure)
-2. [Module Descriptions](#module-descriptions)
-3. [Installation](#installation)
+2. [Configuration and Module Descriptions](#config-module-descriptions)
+3. [Installation and Requirements](#installation-requirements)
 4. [Usage](#usage)
 5. [API Documentation](#api-documentation)
 6. [Docker Deployment](#docker-deployment)
 7. [Testing](#testing)
 8. [Contributing](#contributing)
 9. [License](#license)
+
+
+## Data Source and Preprocessing
+
+This project uses the California Housing Prices dataset from the 1990 Census. The dataset can be obtained from [Kaggle](https://www.kaggle.com/camnugent/california-housing-prices).
+
+Preprocessing steps include:
+1. Handling missing values
+2. Feature scaling using RobustScaler
+3. Creating new features such as rooms_per_household, bedrooms_per_room, and population_per_household
+4. One-hot encoding of categorical variables (ocean_proximity)
+
+For detailed preprocessing steps, refer to the `data_loader.py` and `feature_engineering.py` modules.
+
 
 ## Project Structure
 project_directory/
@@ -26,14 +40,25 @@ project_directory/
 ├── visualization.py
 ├── utils.py
 ├── config.py
-├── random_forest_model.joblib
+├── best_model.joblib
 ├── robust_scaler.joblib
 ├── requirements.txt
 ├── Dockerfile
-└── README.md
+├── .gitignore
+├── README.md
+└── version_info.txt
 
+## Configuration and Module Descriptions
 
-## Module Descriptions
+The project uses the following environment variables:
+- `PORT`: The port on which the API will run (default: 8000)
+
+To set these variables, you can create a `.env` file in the project root or set them in your environment before running the application.
+
+Additional configuration settings can be found in the `config.py` file, including:
+- `DATA_PATH` = 'data/housing.csv', the data used to train models
+- `RANDOM_STATE` = 42
+- `TEST_SIZE` = The proportion of data to use for testing (currently 0.2)
 
 ### config.py
 Configuration settings for the project, including file paths, random seed, and test set size.
@@ -73,7 +98,24 @@ Contains utility functions. Key functions:
 ### main.py
 The main script that orchestrates the entire data analysis and model evaluation pipeline.
 
-## Installation
+## Installation and Requirements
+
+### Requirements
+
+Before installing and running this project, ensure you have the following prerequisites:
+
+- Python 3.12
+- pip (Python package manager)
+- Docker (optional, for containerized deployment)
+- Git (for cloning the repository)
+
+Additionally, make sure you have sufficient disk space for the dataset and model files (approximately 500MB recommended).
+
+For optimal performance, a system with at least 4GB of RAM and a multi-core processor is recommended, especially when training models or handling multiple API requests.
+
+Note: This project is developed and tested with Python 3.12. While it may work with other Python 3.x versions, Python 3.12 is recommended for the best compatibility and performance.
+
+### Installation
 
 1. Clone the repository:
    
@@ -90,7 +132,7 @@ The main script that orchestrates the entire data analysis and model evaluation 
 3. Install the required packages:
    
    pip install -r requirements.txt
-   
+
 
 ## Usage
 
@@ -201,6 +243,23 @@ To test the API locally:
 
 3. Using the Swagger UI:
    Open a web browser and go to `http://localhost:8000/docs`.
+
+
+## Future Improvements and Known Issues
+
+While this project provides a functional housing price prediction model and API, there are several areas for potential improvement:
+
+1. **Model updates**: Implement periodic retraining of the model with new data to maintain prediction accuracy over time.
+2. **Feature importance**: Add functionality to explain predictions and show feature importance.
+3. **API authentication**: Implement user authentication for the API to control access and usage.
+4. **Caching**: Add caching mechanisms to improve API response times for frequent queries.
+5. **Logging and monitoring**: Enhance logging and add monitoring tools for better observability in production.
+6. **Hyperparameter Optimization**: Automate hyperparameter optimization with feature selection from feature importance to compare the best possible models from all model families.
+
+Known limitations:
+- The model is trained on historical data and may not account for recent market trends.
+- Predictions may be less accurate for areas with limited data in the training set.
+- The current implementation does not handle extreme outliers well.
 
 ## Contributing
 
