@@ -1,3 +1,20 @@
+"""
+main.py
+
+This script executes the end-to-end machine learning pipeline for housing data analysis. 
+It includes loading and splitting data, performing feature engineering, preprocessing, 
+training models, evaluating results, and saving key artifacts such as models and scalers.
+
+Key steps in the process:
+1. Load data and split into training and test sets.
+2. Perform exploratory data analysis with visualizations.
+3. Engineer new features.
+4. Preprocess the data by encoding and scaling.
+5. Train multiple models and evaluate their performance.
+6. Save the trained models and relevant artifacts.
+7. Visualize the model comparison results and rank the models.
+"""
+
 import joblib
 from data_loader import load_data, split_data, preprocess_data
 from data_analysis import print_data_info, plot_histograms, plot_categorical, plot_scatter, plot_correlation_matrix
@@ -10,7 +27,13 @@ import pickle
 import sys
 from sklearn import __version__ as sklearn_version
 
-def main():
+
+def main() -> None:
+    """
+    Main function to execute the end-to-end ML process: 
+    loading data, performing feature engineering,
+    preprocessing, training models, and evaluating the results.
+    """   
     print(f"Training with Python version: {sys.version}")
     print(f"Training with scikit-learn version: {sklearn_version}")
         
